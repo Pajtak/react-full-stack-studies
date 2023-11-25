@@ -1,21 +1,14 @@
+import RecomendationCard from "../SearchComponent/RecomendationCard";
+import { Title } from "../TitleComponent";
 import { books } from "./data";
 import styled from "styled-components";
+import livro2 from "../../assets/livro2.png";
 
 const LastReleasesContainer = styled.section`
   background-color: #ebecee;
   padding-bottom: 20px;
   display: flex;
   flex-direction: column;
-`;
-
-const Title = styled.h2`
-  width: 100%;
-  padding: 30px 0;
-  background-color: #fff;
-  color: #eb9b00;
-  font-size: 36px;
-  text-align: center;
-  margin: 0;
 `;
 
 const NewBooksContainer = styled.div`
@@ -29,15 +22,21 @@ const NewBooksContainer = styled.div`
     width: 100px;
   }
 `;
-function LastReleases(params) {
+function LastReleases() {
   return (
     <LastReleasesContainer>
-      <Title>Ultimos Lançamentos</Title>
+      <Title fontSize="36px">Ultimos Lançamentos</Title>
       {books.map((book) => (
         <NewBooksContainer>
           <img src={book.src} alt="" />
         </NewBooksContainer>
       ))}
+      <RecomendationCard
+        title="Talvez você se interesse por"
+        subtitle="Angular 11"
+        desc="Construindo uma aplicação integrada com Angular 11"
+        img={livro2}
+      />
     </LastReleasesContainer>
   );
 }
