@@ -1,13 +1,16 @@
 import "./style.css";
+import { Link } from "react-router-dom";
 
-const options = ["CATEGORIAS", "FAVORITOS", "MINHA ESTANTE"];
+const options = ["CATEGORIAS", "FAVORITOS", "ESTANTE"];
 
 function HeaderOptions() {
   return (
     <ul className="options">
       {options.map((text) => (
         <li className="option">
-          <p>{text}</p>
+          <Link to={`/${text.toLowerCase()}`}>
+            <p>{text}</p>
+          </Link>
         </li>
       ))}
     </ul>
