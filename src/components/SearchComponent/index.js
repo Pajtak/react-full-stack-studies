@@ -1,7 +1,7 @@
 import Input from "../Input";
 import styled from "styled-components";
-import { useState } from "react";
-import { books } from "./data";
+import { useEffect, useState } from "react";
+import { getBooks } from "../../services/booksService";
 
 const SearchContainer = styled.section`
   background-image: linear-gradient(90deg, #002f52 35%, #326589 165%);
@@ -45,6 +45,12 @@ const Result = styled.div`
 
 function SearchComponent() {
   const [useSearchedBooks, setUseSearchedBooks] = useState([]);
+  const [useBooks, setUseBooks] = useState([]);
+
+  useEffect(() => {
+    const booksAPI = getBooks();
+    setUseBooks(booksAPI);
+  }, []);
 
   return (
     <SearchContainer>
@@ -54,7 +60,7 @@ function SearchComponent() {
         placeholder="Escreva sua próxima leitura"
         onBlur={(event) => {
           const inputText = event.target.value;
-          const searchResult = books.filter((book) =>
+          const searchResult = useBooks.filter((book) =>
             book.nome.includes(inputText)
           );
           setUseSearchedBooks(searchResult);
